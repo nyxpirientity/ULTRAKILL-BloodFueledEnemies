@@ -42,12 +42,12 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
 
                 var dist = Vector3.Distance(playerPos, pos);
 
-                float maxDist = damage / Options.BloodFuelEnemiesDistDivisor;
+                float maxDist = damage / Options.BloodFuelEnemiesDistDivisor.Value;
 
                 float normalizedDist = 1.0f - Mathf.Min(1.0f, dist / maxDist);
                 
                 float heal = (damage * normalizedDist);
-                heal *= Options.BloodFuelEnemiesHealScalar;
+                heal *= Options.BloodFuelEnemiesHealScalar.Value;
 
                 Enemy.Health = Mathf.Min(Enemy.InitialHealth, Enemy.Health + heal);
             }
