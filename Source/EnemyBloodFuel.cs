@@ -1,15 +1,25 @@
 using UnityEngine;
 using Nyxpiri.ULTRAKILL.NyxLib;
+using System;
 
 namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
 {
+    public static class EnemyBloodFuelEnemyComponentsExtension
+    {
+        public static EnemyBloodFuel GetBloodFuel(this EnemyComponents enemy)
+        {
+            return enemy.GetMonoByIndex<EnemyBloodFuel>(EnemyBloodFuel.MonoRegistrarIdx);
+        }
+    }
+
     public class EnemyBloodFuel : EnemyModifier
     {
         public EnemyComponents Enemy { get; private set; } = null;
+        public static int MonoRegistrarIdx { get; private set; }
 
-        protected void OnDestroy()
+        internal static void Initialize()
         {
-            PlayerEvents.PreHurt -= PlayerPreHurt;
+            MonoRegistrarIdx = EnemyComponents.MonoRegistrar.Register<EnemyBloodFuel>();
         }
 
         protected void Start()
@@ -18,11 +28,16 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
             Enemy = GetComponent<EnemyComponents>();
         }
 
-        private void PlayerPreHurt(NewMovement player, int damage, bool invincible, float scoreLossMultiplier, bool explosion, bool instablack, float hardDamageMultiplier, bool ignoreInvincibility)
+        protected void OnDestroy()
         {
-            if (Cheats.IsCheatEnabled(Cheats.BloodFueledEnemies))
+            PlayerEvents.PreHurt -= PlayerPreHurt;
+        }
+
+        private void PlayerPreHurt(EventMethodCanceler canceler, PlayerComponents player, int damage, int processedDamage, bool invincible, float scoreLossMultiplier, bool explosion, bool instablack, float hardDamageMultiplier, bool ignoreInvincibility)
+        {
+            if (NyxLib.Cheats.IsCheatEnabled(Cheats.BloodFueledEnemies))
             {
-                var playerPos = player.rb.transform.position;
+                var playerPos = player.NewMovement.rb.transform.position;
                 var pos = transform.position;
 
                 var dist = Vector3.Distance(playerPos, pos);
