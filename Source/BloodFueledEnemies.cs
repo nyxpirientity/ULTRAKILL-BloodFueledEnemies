@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using BepInEx;
 using System;
+using System.IO;
 
 namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
 {
@@ -17,8 +18,23 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
             Log.Initialize(Logger);
             EnemyBloodFuel.Initialize();
             NyxLib.Cheats.ReadyForCheatRegistration += RegisterCheats;
+            Options.Config = Config;
+            Options.Initialize();
+            
+            if (!File.Exists(Config.ConfigFilePath))
+            {
+                Config.Save();
+            }
         }
-
+       
+        protected void OnApplicationFocus(bool hasFocus)
+        {
+            if (hasFocus)
+            {
+                Config.Reload();
+            }
+        }
+        
         private void RegisterCheats(CheatsManager cheatsManager)
         {
             cheatsManager.RegisterCheat(new ToggleCheat(
