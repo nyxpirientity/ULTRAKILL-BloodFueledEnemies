@@ -10,8 +10,8 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
 
         public static void Initialize()
         {
-            BloodFuelEnemiesHealScalar = Config.Bind($"Balance", "BloodFuelEnemiesHealScalar", 0.4f);
-            BloodFuelEnemiesDistDivisor = Config.Bind($"Balance", "BloodFuelEnemiesDistDivisor", 8.0f);
+            BloodFuelEnemiesHealScalar = Config.Bind($"Balance", "BloodFuelEnemiesHealScalar", 0.5f);
+            BloodFuelEnemiesDistDivisor = Config.Bind($"Balance", "BloodFuelEnemiesDistDivisor", 4.0f);
         }
         
         internal static ConfigFile Config = null;
