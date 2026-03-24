@@ -1,0 +1,10 @@
+{
+    "name": "BloodFueledEnemies",
+    "version_number": "0.0.0",
+    "website_url": "https://github.com/nyxpirientity/ULTRAKILL-Cyberloop",
+    "description": "Adds a cheat which when enabled, allows enemies to heal using your blood based on the configuration used.",
+    "dependencies": [ 
+        "Nyxpiri-NyxLib-0.0.1",
+        "BepInEx-BepInExPack-5.4.2305"
+    ]
+}
