@@ -10,6 +10,7 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
         public const string BloodFueledEnemies = "nyxpiri.blood-fueled-enemies";
     }
     [BepInPlugin("nyxpiri.ultrakill.blood-fueled-enemies", "Blood Fueled Enemies", "0.0.0")]
+    [BepInDependency("nyxpiri.ultrakill.nyxlib", BepInDependency.DependencyFlags.HardDependency)]
     [BepInProcess("ULTRAKILL.exe")]
     public class BloodFueledEnemies: BaseUnityPlugin
     {
