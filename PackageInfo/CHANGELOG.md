@@ -1,0 +1,1 @@
+- Use `HighestHealth` instead of `InitialHealth` as max health to heal to
