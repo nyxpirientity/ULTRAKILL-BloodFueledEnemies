@@ -49,7 +49,7 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
                 float heal = (damage * normalizedDist);
                 heal *= Options.HealScalar.Value;
 
-                Enemy.Health = Mathf.Min(Enemy.InitialHealth, Enemy.Health + heal);
+                Enemy.Health = Mathf.Min(Enemy.HighestHealth, Enemy.Health + heal);
             }
         }
     }
