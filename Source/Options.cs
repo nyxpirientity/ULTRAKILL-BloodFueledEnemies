@@ -6,14 +6,16 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
     public static class Options
     {
         public static ConfigEntry<float> HealScalar = null;
+        public static ConfigEntry<float> ScaleWithRadianceScalar = null;
         public static ConfigEntry<float> DistanceScalar = null;
 
         public static void Initialize()
         {
             HealScalar = Config.Bind($"Balance", "HealScalar", 0.5f);
             DistanceScalar = Config.Bind($"Balance", "DistanceScalar", 0.25f);
+            ScaleWithRadianceScalar = Config.Bind($"Balance", "ScaleWithRadianceScalar", 1.0f);
         }
-        
+
         internal static ConfigFile Config = null;
     }
 }

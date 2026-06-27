@@ -45,9 +45,10 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
                 float maxDist = damage * Options.DistanceScalar.Value;
 
                 float normalizedDist = 1.0f - Mathf.Min(1.0f, dist / maxDist);
-                
+
                 float heal = (damage * normalizedDist);
                 heal *= Options.HealScalar.Value;
+                heal -= (heal / Enemy.Eid.totalHealthModifier) * Options.ScaleWithRadianceScalar.Value;
 
                 Enemy.Health = Mathf.Min(Enemy.HighestHealth, Enemy.Health + heal);
             }
