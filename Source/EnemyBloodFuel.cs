@@ -38,7 +38,7 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
             if (NyxLib.Cheats.IsCheatEnabled(Cheats.BloodFueledEnemies))
             {
                 var playerPos = player.NewMovement.rb.transform.position;
-                var pos = transform.position;
+                var pos = Enemy.CollisionCenter;
 
                 var dist = Vector3.Distance(playerPos, pos);
 
@@ -48,8 +48,7 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
 
                 float heal = (damage * normalizedDist);
                 heal *= Options.HealScalar.Value;
-                heal -= (heal / Enemy.Eid.totalHealthModifier) * Options.ScaleWithRadianceScalar.Value;
-
+                heal = Mathf.LerpUnclamped(heal, heal / Enemy.Eid.totalDamageModifier, Options.ScaleWithRadianceScalar.Value);
                 Enemy.Health = Mathf.Min(Enemy.HighestHealth, Enemy.Health + heal);
             }
         }
