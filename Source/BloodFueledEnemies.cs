@@ -9,10 +9,10 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
     {
         public const string BloodFueledEnemies = "nyxpiri.blood-fueled-enemies";
     }
-    [BepInPlugin("nyxpiri.ultrakill.blood-fueled-enemies", "Blood Fueled Enemies", "0.0.1")]
+    [BepInPlugin("nyxpiri.ultrakill.blood-fueled-enemies", "Blood Fueled Enemies", "0.1.0")]
     [BepInDependency("nyxpiri.ultrakill.nyxlib", BepInDependency.DependencyFlags.HardDependency)]
     [BepInProcess("ULTRAKILL.exe")]
-    public class BloodFueledEnemies: BaseUnityPlugin
+    public class BloodFueledEnemies : BaseUnityPlugin
     {
         protected void Awake()
         {
@@ -21,13 +21,13 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
             NyxLib.Cheats.ReadyForCheatRegistration += RegisterCheats;
             Options.Config = Config;
             Options.Initialize();
-            
+
             if (!File.Exists(Config.ConfigFilePath))
             {
                 Config.Save();
             }
         }
-       
+
         protected void OnApplicationFocus(bool hasFocus)
         {
             if (hasFocus)
@@ -35,19 +35,19 @@ namespace Nyxpiri.ULTRAKILL.BloodFueledEnemies
                 Config.Reload();
             }
         }
-        
+
         private void RegisterCheats(CheatsManager cheatsManager)
         {
             cheatsManager.RegisterCheat(new ToggleCheat(
-                "Blood Fueled Enemies", 
+                "Blood Fueled Enemies",
                 Cheats.BloodFueledEnemies,
                 onDisable: (cheat) =>
                 {
-                    
+
                 },
                 onEnable: (cheat, manager) =>
                 {
-                    
+
                 }
             ), "FAIRNESS AND EQUALITY");
         }
